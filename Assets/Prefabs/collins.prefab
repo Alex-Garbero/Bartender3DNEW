@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7895682573804410658}
   - component: {fileID: 5366019432513168360}
   - component: {fileID: 6752720618119200657}
+  - component: {fileID: -5903415098412532894}
+  - component: {fileID: -1568500472369124369}
   m_Layer: 0
   m_Name: collins
   m_TagString: glass
@@ -98,3 +100,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2124705421725058983, guid: ac7545b67dce6004bb8d0fb134a38128, type: 3}
+--- !u!114 &-5903415098412532894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870180767168315965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11991030cd7df34a96539bef50156c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1568500472369124369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870180767168315965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0120eca8db4a6bc44a76bb4b348d44e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glass: {fileID: 5870180767168315965}

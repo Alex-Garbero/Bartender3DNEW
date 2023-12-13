@@ -41,6 +41,22 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             order.ItemSelected = false;
         }
+        else if(order.ItemSelected && order.selectable.tag == "glass" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            order.selectable.GetComponent<GlassMove>().enabled = false;
+            order.selectable.GetComponent<GlassClick>().enabled = true;
+            order.selectable.transform.position = new Vector3(order.selectable.transform.position.x, 3.9f, -9.25f);
+            order.selectable.layer = 0;
+            foreach (Transform child in order.selectable.transform)
+            {
+                child.gameObject.layer = 0;
+                foreach (Transform grandchild in child)
+                {
+                    grandchild.gameObject.layer = 0;
+                }
+            }
+            order.ItemSelected = false;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
