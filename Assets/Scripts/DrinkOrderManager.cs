@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrinkOrderManager : MonoBehaviour
 {
     // Array to store the names of the drinks
-    private string[] drinks = new string[] { "Cape Cod", "Screwdriver" };
+    private string[] drinks = new string[] { "Cape Cod", "Screwdriver", "Cuba Libre", "Bay Breeze" };
 
     // Function to get a random drink order
     public string GetRandomDrinkOrder()
