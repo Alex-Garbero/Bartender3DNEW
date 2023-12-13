@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7717508753279429519}
   - component: {fileID: 5548133592915304261}
   - component: {fileID: -2274450580304032995}
+  - component: {fileID: 609736043916176626}
+  - component: {fileID: -7867476282710690582}
   m_Layer: 0
   m_Name: rocks
   m_TagString: glass
@@ -98,3 +100,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2124705421725058983, guid: 4ad2ae3d3ef85894ab16873d446c186f, type: 3}
+--- !u!114 &609736043916176626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340525579150786192}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11991030cd7df34a96539bef50156c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7867476282710690582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340525579150786192}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0120eca8db4a6bc44a76bb4b348d44e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glass: {fileID: 6340525579150786192}
