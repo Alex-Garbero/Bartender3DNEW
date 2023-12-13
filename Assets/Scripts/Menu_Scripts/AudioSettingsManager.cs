@@ -1,17 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI; // Required for interacting with UI elements
+using UnityEngine.UI; // Required for UI components like Slider
 
 public class AudioSettingsManager : MonoBehaviour
 {
-    // Reference to the audio source that controls the game's music
-    public AudioSource musicSource;
+    public AudioSource audioSource; // Assign this in the inspector
+    public Slider volumeSlider;     // Assign the volume slider in the inspector
 
-    // Function that will be called when the slider value changes
-    public void OnVolumeSliderChanged(float volume)
+    private void Start()
     {
-        if (musicSource != null)
-        {
-            musicSource.volume = volume;
-        }
+        // Initialize the slider's value to the current volume
+        volumeSlider.value = audioSource.volume;
+
+        // Add a listener to handle the value change events
+        volumeSlider.onValueChanged.AddListener(HandleVolumeChange);
+    }
+
+    private void HandleVolumeChange(float value)
+    {
+        // Set the volume on the AudioSource to the slider's value
+        audioSource.volume = value;
     }
 }
