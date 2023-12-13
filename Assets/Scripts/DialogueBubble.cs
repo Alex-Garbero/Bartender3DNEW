@@ -12,7 +12,7 @@ public class DialogueBubble : MonoBehaviour
     private void Awake()
     {
         // Make sure the dialogue bubble is not active when the game starts
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     // This method is public so it can be called by the button's OnClick event
