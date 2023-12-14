@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2274450580304032995}
   - component: {fileID: 609736043916176626}
   - component: {fileID: -7867476282710690582}
+  - component: {fileID: -1814110982598446778}
   m_Layer: 0
   m_Name: rocks
   m_TagString: glass
@@ -125,3 +126,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glass: {fileID: 6340525579150786192}
+--- !u!114 &-1814110982598446778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340525579150786192}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9f9bb47e3686841b6961350d23e07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
