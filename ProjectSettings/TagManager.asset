@@ -8,6 +8,8 @@ TagManager:
   - Tin
   - SmallTin
   - glass
+  - drink
+  - lime
   layers:
   - Default
   - TransparentFX

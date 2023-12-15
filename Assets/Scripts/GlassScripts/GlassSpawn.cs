@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //is a template for clicking on object, copy paste when creating a specialized version
-public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class GlassSpawn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private CurrentOrder order;
+    public GameObject glass;
 
     public void Start()
     {
@@ -32,29 +33,12 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         if (!order.ItemSelected && eventData.button == PointerEventData.InputButton.Left)
         {
-            //changes layer
-            gameObject.layer = 2;
-            foreach (Transform child in transform)
-            {
-                child.gameObject.layer = 2;
-                foreach (Transform grandchild in child)
-                {
-                    grandchild.gameObject.layer = 2;
-                }
-            }
-
-            GetComponent<GlassMove>().enabled = true;
+            GameObject moveGlass = Instantiate(glass);
+            moveGlass.layer = 2;
+            moveGlass.GetComponent<GlassMove>().enabled = true;
             order.ItemSelected = true;
-            order.selectable = gameObject;
+            order.selectable = moveGlass;
         }
-        else if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
-        {
-            {
-                order.selectable.GetComponent<soda>().tiltSoda();
-                order.ItemSelected = false;
-            }
-        }
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)
