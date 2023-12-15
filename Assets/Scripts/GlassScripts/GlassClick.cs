@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private CurrentOrder order;
-    public GameObject glass;
 
     public void Start()
     {
@@ -31,12 +30,11 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameObject moveGlass = Instantiate(glass); 
         if (!order.ItemSelected && eventData.button == PointerEventData.InputButton.Left)
         {
             //changes layer
-            moveGlass.layer = 2;
-            foreach (Transform child in moveGlass.transform)
+            gameObject.layer = 2;
+            foreach (Transform child in transform)
             {
                 child.gameObject.layer = 2;
                 foreach (Transform grandchild in child)
@@ -45,10 +43,60 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 }
             }
 
-            moveGlass.GetComponent<GlassMove>().enabled = true;
+            GetComponent<GlassMove>().enabled = true;
             order.ItemSelected = true;
-            order.selectable = moveGlass;
+            order.selectable = gameObject;
         }
+        else if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "alcohol")
+                    child.gameObject.SetActive(true);
+            }
+            order.selectable.GetComponent<soda>().tiltSoda();
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "lime" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "lime")
+                    child.gameObject.SetActive(true);
+            }
+
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+
+        }
+        else if (order.ItemSelected && order.selectable.tag == "lemon" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "lemon")
+                    child.gameObject.SetActive(true);
+            }
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "ice" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "ice")
+                    child.gameObject.SetActive(true);
+            }
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            {
+                order.selectable.GetComponent<soda>().tiltSoda();
+                order.ItemSelected = false;
+            }
+        }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
