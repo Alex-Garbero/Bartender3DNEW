@@ -34,7 +34,7 @@ public class CurrentOrder : MonoBehaviour
 
             else
             {
-                selectable.transform.position = selectable.GetComponent<Clickable>().originalPosition;
+                //selectable.transform.position = selectable.GetComponent<Clickable>().originalPosition;
             }
 
             //changes boolean and reset layer back to default

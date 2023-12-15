@@ -43,6 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2838149676053613619}
+  - component: {fileID: 442668330907293517}
   m_Layer: 0
   m_Name: CollinsStocks
   m_TagString: glass
@@ -71,6 +72,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &442668330907293517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388078879648235542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519d58f02dfa1d945a5824f86022ebc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glass: {fileID: 5870180767168315965, guid: 6c4b2e930c74866409429a6a0eba470e, type: 3}
 --- !u!1 &6664239132376322759
 GameObject:
   m_ObjectHideFlags: 0
