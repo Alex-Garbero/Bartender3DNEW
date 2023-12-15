@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4872824464564890973}
   m_Layer: 0
   m_Name: Lime
-  m_TagString: Untagged
+  m_TagString: lime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

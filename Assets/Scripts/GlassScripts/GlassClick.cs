@@ -49,6 +49,48 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         }
         else if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
         {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "alcohol")
+                    child.gameObject.SetActive(true);
+            }
+            order.selectable.GetComponent<soda>().tiltSoda();
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "lime" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "lime")
+                    child.gameObject.SetActive(true);
+            }
+
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+
+        }
+        else if (order.ItemSelected && order.selectable.tag == "lemon" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "lemon")
+                    child.gameObject.SetActive(true);
+            }
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "ice" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "ice")
+                    child.gameObject.SetActive(true);
+            }
+            Destroy(order.selectable);
+            order.ItemSelected = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
+        {
             {
                 order.selectable.GetComponent<soda>().tiltSoda();
                 order.ItemSelected = false;

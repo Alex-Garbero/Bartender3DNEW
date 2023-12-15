@@ -35,7 +35,7 @@ public class IceSpawn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             GameObject moveIce = Instantiate(ice);
             moveIce.layer = 2;
-            moveIce.GetComponent<MoveObject>().enabled = true;
+            moveIce.GetComponent<IceMove>().enabled = true;
             order.ItemSelected = true;
             order.selectable = moveIce;
         }
