@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 754483136}
   - component: {fileID: 754483138}
   - component: {fileID: 754483137}
+  - component: {fileID: 754483139}
   m_Layer: 5
   m_Name: CorrectOrderCounter
   m_TagString: Untagged
@@ -1074,6 +1075,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754483135}
   m_CullTransparentMesh: 1
+--- !u!114 &754483139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754483135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6a40f2e491b09459015592c51bbf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  script: {fileID: 0}
+  correctScore: 0
+  incorrectScore: 0
+  cScoreUI: {fileID: 754483137}
+  iScoreUI: {fileID: 1295111569}
 --- !u!1 &766723542
 GameObject:
   m_ObjectHideFlags: 0

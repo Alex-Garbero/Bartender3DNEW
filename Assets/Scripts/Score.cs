@@ -11,6 +11,10 @@ public class Score : MonoBehaviour
 
     private bool gameEnded = false; // Flag to track if the game has already ended
 
+    public void Awake()
+    {
+        script = GameObject.Find("Customer").GetComponent<CustomerManagement>();
+    }
     void Update()
     {
         // If the game has already ended, don't continue checking

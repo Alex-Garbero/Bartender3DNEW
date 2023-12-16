@@ -17,7 +17,8 @@ public class CustomerManagement : MonoBehaviour
     public string drinkToSpeech;
     public int correctOrders;
     public int incorrectOrders;
-
+    GameObject customerGlobal;
+    public float checkDelay = 25f;
 
     // Bar Settings
     [Header("Bar Settings")]
@@ -239,7 +240,7 @@ public class CustomerManagement : MonoBehaviour
 
             string drink = drinkComponent.GetDrink();
             List<string> ingredients = drinkComponent.GetIngredients();
-            ProvideIngredientsToCustomer(customer, DrinkList.GetDrinks());
+            customerGlobal = customer;
         }
 
     }
@@ -266,7 +267,7 @@ public class CustomerManagement : MonoBehaviour
         // Get customer's and player's drink ingredients
         Debug.Log("ProvideIngredientsToCustomer");
         List<string> customerDrinkIngredients = GetIngredientsForDrink(drinkToSpeech);
-        playerDrinkIngredients = customerDrinkIngredients;
+        playerDrinkIngredients = playerOrder;
         Debug.Log("Player assembled these ingredients " + playerDrinkIngredients);
         Debug.Log(customerDrinkIngredients);
 
@@ -286,19 +287,17 @@ public class CustomerManagement : MonoBehaviour
         if (AreIngredientListsEqual(plist, clist))
         {
             Debug.Log("Ingredients match. Customer says thank you.");
-            StartCoroutine(DestroyCustomerAfterDelay(customer, 3f));
             correctPoints++;
             Debug.Log("Correct: " + correctPoints);
-            correctOrders = correctOrders + correctPoints;
+            correctOrders = correctOrders + 1;
             Debug.Log("Correct Orders: " + correctOrders);
         }
         else
         {
             Debug.Log("Ingredients do not match. Player must continue.");
-            StartCoroutine(DestroyCustomerAfterDelay(customer, 3f));
             incorrectPoints++;
             Debug.Log("Incorrect: " + incorrectPoints);
-            incorrectOrders = incorrectOrders + incorrectPoints;
+            incorrectOrders = incorrectOrders + 1;
             Debug.Log("Incorrect Orders: " + incorrectOrders);
         }
     }
@@ -335,33 +334,21 @@ public class CustomerManagement : MonoBehaviour
         HashSet<string> set1 = new HashSet<string>(list1);
         HashSet<string> set2 = new HashSet<string>(list2);
         Debug.Log("AreIngredientsListEqual: " + set1.SetEquals(set2));
-        // return set1.SetEquals(set2);
-        int count = 0;
-        
-        if (set1.SetEquals(set2) && count == 0)
-        {
-            Debug.Log(count);
-            count = 0;
-            return true;
+        return set1.SetEquals(set2);
 
-        }
-        else
-        {
-            Debug.Log(count);
-            count = 1;
-            return false;
-
-        }
        
     }
     
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-        
-       
+        if (customerGlobal != null && Time.time > checkDelay)
+        {
+            ProvideIngredientsToCustomer(customerGlobal, new List<string>());
+            StartCoroutine(DestroyCustomerAfterDelay(customerGlobal, 3f));
+            checkDelay = 25f + Time.time;
+        }
     }
 }
