@@ -20,12 +20,35 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        //changer.confirm();
+        if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "alcohol")
+                    child.gameObject.SetActive(true);
+            }
+            order.selectable.GetComponent<DrinkMove>().pour = true;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            {
+
+            }
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //changer.revert();
+        if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            order.selectable.GetComponent<DrinkMove>().pour = false;
+        }
+        else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
+        {
+            {
+
+            }
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -46,16 +69,6 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             GetComponent<GlassMove>().enabled = true;
             order.ItemSelected = true;
             order.selectable = gameObject;
-        }
-        else if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
-        {
-            foreach (Transform child in transform)
-            {
-                if (child.tag == "alcohol")
-                    child.gameObject.SetActive(true);
-            }
-            order.selectable.GetComponent<soda>().tiltSoda();
-            order.ItemSelected = false;
         }
         else if (order.ItemSelected && order.selectable.tag == "lime" && eventData.button == PointerEventData.InputButton.Left)
         {
@@ -88,13 +101,6 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             }
             Destroy(order.selectable);
             order.ItemSelected = false;
-        }
-        else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
-        {
-            {
-                order.selectable.GetComponent<soda>().tiltSoda();
-                order.ItemSelected = false;
-            }
         }
 
     }

@@ -48,8 +48,13 @@ public class SodaGunClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             //order.selectable is the current object being selected/moved
             order.selectable = gameObject;
             //arbitrary rotation for sodagun: needs tweaking once we finalize everything
-            transform.rotation = Quaternion.Euler(0, -90, -20);
+            transform.rotation = Quaternion.Euler(-90, -90 , 0);
             transform.position = new Vector3(0, 4.75f, -11.3f);
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.GetComponent<SodaGunButtons>().enabled = true;
+            }
 
         }
     }
