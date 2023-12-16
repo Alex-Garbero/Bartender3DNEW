@@ -17,6 +17,9 @@ TagManager:
   - Win
   - Loss
   - GameOver
+  - rocks
+  - collins
+  - Soda Water
   layers:
   - Default
   - TransparentFX

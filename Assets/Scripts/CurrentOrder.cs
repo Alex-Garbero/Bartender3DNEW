@@ -8,6 +8,7 @@ public class CurrentOrder : MonoBehaviour
     public bool ItemSelected = false;
     public List<string> order = new List<string>();
     public GameObject glassOrder;
+    public bool water = false;
     // Start is called before the first frame update
     public void printOrder()
     {
@@ -49,10 +50,12 @@ public class CurrentOrder : MonoBehaviour
                 selectable.transform.rotation = selectable.GetComponent<SodaGunClick>().originalRotation;
                 selectable.transform.position = selectable.GetComponent<SodaGunClick>().originalPosition;
                 ItemSelected = false;
+
                 foreach (Transform child in selectable.transform)
                 {
                     child.gameObject.layer = 0;
                 }
+                water = false;
             }
             else if (selectable.tag == "drink")
             {

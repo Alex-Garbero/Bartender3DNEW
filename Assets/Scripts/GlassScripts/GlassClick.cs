@@ -8,7 +8,6 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 {
     private CurrentOrder order;
     public string glass;
-
     public void Start()
     {
 
@@ -47,7 +46,14 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 {
                     child.gameObject.SetActive(false);
                     child.gameObject.SetActive(true);
-                    child.GetComponent<MeshRenderer>().material = order.selectable.GetComponent<SodaGunClick>().color;
+                    if (order.water)
+                    {
+
+                    }
+                    else
+                    {
+                        child.GetComponent<MeshRenderer>().material = order.selectable.GetComponent<SodaGunClick>().color;
+                    }
                 }
             }
         }

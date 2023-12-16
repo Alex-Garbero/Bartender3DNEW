@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3162239181949347800}
   m_Layer: 0
   m_Name: Soda Water
-  m_TagString: Untagged
+  m_TagString: Soda Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14ae8bdbca0984b46b08c7aac72d3ce9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sodatype: 
+  sodatype: soda water
   color: {fileID: 0}
 --- !u!1 &3109074448553620083
 GameObject:
@@ -402,7 +402,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f54e2868cf839b146aee571d0663f7db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -450,8 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sodatype: 
-  color: {fileID: 0}
+  sodatype: pineapple
+  color: {fileID: 2100000, guid: f54e2868cf839b146aee571d0663f7db, type: 2}
 --- !u!1 &4434167017082360659
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e7cd61b9955f161448e1c33321654930, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -563,8 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sodatype: 
-  color: {fileID: 0}
+  sodatype: coke
+  color: {fileID: 2100000, guid: e7cd61b9955f161448e1c33321654930, type: 2}
 --- !u!1 &5725309180371961525
 GameObject:
   m_ObjectHideFlags: 0
