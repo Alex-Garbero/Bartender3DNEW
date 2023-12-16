@@ -19,7 +19,7 @@ public class CustomerManagement : MonoBehaviour
     public int incorrectOrders;
     GameObject customerGlobal;
     public float checkDelay = 25f;
-
+    public GameObject OrderController;
     // Bar Settings
     [Header("Bar Settings")]
     public Transform barStoolTransform;
@@ -66,7 +66,7 @@ public class CustomerManagement : MonoBehaviour
     // Gets the player drink for comparison
     private void Awake()
     {
-        GameObject OrderController = GameObject.Find("OrderController");
+        OrderController = GameObject.Find("OrderController");
         playerOrder = OrderController.GetComponent<CurrentOrder>().order;
     }
 
@@ -153,6 +153,7 @@ public class CustomerManagement : MonoBehaviour
         SetCustomerDrink(newCustomer, selectedDrink);
         List<string> ingredients = GetIngredientsForDrink(selectedDrinkName);
 
+        /*
         if (selectedDrink.Contains(selectedDrinkName))
         {
             Debug.Log("SELECTED DRINK: " + selectedDrink + " IF " + selectedDrinkName);
@@ -167,7 +168,7 @@ public class CustomerManagement : MonoBehaviour
 
 
         }
-
+        */
         yield return StartCoroutine(MoveTowardsBar(newCustomer.transform));
 
         isSpawning = false;
@@ -364,7 +365,7 @@ public class CustomerManagement : MonoBehaviour
             ProvideIngredientsToCustomer(customerGlobal, new List<string>());
             StartCoroutine(DestroyCustomerAfterDelay(customerGlobal, 3f));
             checkDelay = 25f + Time.time;
-            playerOrder.resetOrder();
+            OrderController.GetComponent<CurrentOrder>().resetOrder();
         }
     }
 }
