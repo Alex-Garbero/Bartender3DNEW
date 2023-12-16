@@ -7,6 +7,7 @@ public class CurrentOrder : MonoBehaviour
     public GameObject selectable;  //
     public bool ItemSelected = false;
     private string order = "";
+    public GameObject glassOrder;
     // Start is called before the first frame update
     public void printOrder()
     {
@@ -23,21 +24,30 @@ public class CurrentOrder : MonoBehaviour
         
         if (Input.GetMouseButtonDown(1)&&ItemSelected)
         {
-            //disables movement script, must be diabled before placing object back to its location
-            selectable.GetComponent<MoveObject>().enabled = false;
             //if sodagun it rotates back into place
             if (selectable.tag == "sodagun")
             {
-                selectable.transform.position = selectable.GetComponent<SodaGunMovement>().originalPosition;
+                selectable.GetComponent<SodaGunMove>().enabled = false;
+                //selectable.transform.position = selectable.GetComponent<SodaGunMove>().enabled =;
                 selectable.transform.rotation = Quaternion.Euler(90, 90, 0);
+            }
+            else if (selectable.tag == "drink")
+            {
+                selectable.GetComponent<DrinkMove>().enabled = false;
+                //selectable.transform.position = selectable.GetComponent<SodaGunMovement>().originalPosition;
+            }
+            else if (selectable.tag == "glass"&&selectable.GetInstanceID() == glassOrder.GetInstanceID())
+            {
+                Destroy(selectable);
+                //delete order
+
             }
 
             else
             {
-                //selectable.transform.position = selectable.GetComponent<Clickable>().originalPosition;
+                Destroy(selectable);
             }
 
-            //changes boolean and reset layer back to default
             ItemSelected = false;
             selectable.layer = 0;
         }

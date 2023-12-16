@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private CurrentOrder order;
+    private GameObject glassOrder;
+    private bool curGlass= false;
+
 
     private void Awake()
     {
@@ -43,10 +46,18 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else if(order.ItemSelected && order.selectable.tag == "glass" && eventData.button == PointerEventData.InputButton.Left)
         {
-            order.selectable.GetComponent<GlassMove>().enabled = false;
-            order.selectable.transform.position = new Vector3(order.selectable.transform.position.x, 3.9f, -9.25f);
-            order.selectable.layer = 0;
-            foreach (Transform child in order.selectable.transform)
+            //failure point potentially in the future
+            if (curGlass&&order.selectable.GetInstanceID() != glassOrder.GetInstanceID())
+            {
+                Destroy(glassOrder);
+                curGlass = false;
+                //delete order
+            }
+            glassOrder = order.selectable;
+            glassOrder.GetComponent<GlassMove>().enabled = false;
+            glassOrder.transform.position = new Vector3(glassOrder.transform.position.x, 3.9f, -9.25f);
+            glassOrder.layer = 0;
+            foreach (Transform child in glassOrder.transform)
             {
                 child.gameObject.layer = 0;
                 foreach (Transform grandchild in child)
@@ -54,8 +65,11 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     grandchild.gameObject.layer = 0;
                 }
             }
-            order.selectable.GetComponent<GlassClick>().enabled = true;
+            glassOrder.GetComponent<GlassClick>().enabled = true;
             order.ItemSelected = false;
+            glassOrder = order.selectable;
+            curGlass = true;
+            order.glassOrder = glassOrder;
         }
     }
 

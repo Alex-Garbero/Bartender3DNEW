@@ -4,20 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //is a template for clicking on object, copy paste when creating a specialized version
-public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class DrinkClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private CurrentOrder order;
-    private GameObject parent;
+    private DrinkMove move;
+    public Vector3 originalPosition;
 
-    void Start()
-    {
-
-    }
     private void Awake()
     {
+        originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        move = GetComponent<DrinkMove>();
         GameObject OrderController = GameObject.Find("OrderController");
         order = OrderController.GetComponent<CurrentOrder>();
-        parent = transform.parent.gameObject;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -32,17 +30,22 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (order.selectable.tag == "sodagun" &&eventData.button == PointerEventData.InputButton.Left)
+        if (!order.ItemSelected && eventData.button == PointerEventData.InputButton.Left)
         {
             //changes layer
-            parent.layer = 2;
-            foreach (Transform child in parent.transform)
+            gameObject.layer = 2;
+            foreach (Transform child in transform)
             {
                 child.gameObject.layer = 2;
+                foreach (Transform grandchild in child)
+                {
+                    grandchild.gameObject.layer = 2;
+                }
             }
 
-            parent.GetComponent<SodaGunMove>().enabled = true;
-            parent.GetComponent<SodaGunClick>().type = gameObject.tag;
+            move.enabled = true;
+            order.ItemSelected = true;
+            order.selectable = gameObject;
         }
     }
 
