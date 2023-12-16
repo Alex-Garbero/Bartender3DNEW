@@ -105,6 +105,7 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 if (child.tag == "ice")
                     child.gameObject.SetActive(true);
             }
+
             Destroy(order.selectable);
             order.ItemSelected = false;
             order.addIngredient("ice");

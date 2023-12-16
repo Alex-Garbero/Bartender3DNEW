@@ -12,6 +12,8 @@ TagManager:
   - lime
   - ice
   - alcohol
+  - Customer
+  - lemon
   layers:
   - Default
   - TransparentFX
