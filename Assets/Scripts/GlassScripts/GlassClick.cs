@@ -17,6 +17,11 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         GameObject OrderController = GameObject.Find("OrderController");
         order = OrderController.GetComponent<CurrentOrder>();
     }
+    void FixedUpdate()
+    {
+
+
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -42,12 +47,11 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (order.ItemSelected && order.selectable.tag == "drink" && eventData.button == PointerEventData.InputButton.Left)
         {
             order.selectable.GetComponent<DrinkMove>().pour = false;
+            order.addIngredient(order.selectable.GetComponent<DrinkClick>().drinktype);
         }
         else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
         {
-            {
-
-            }
+            order.addIngredient(order.selectable.GetComponent<SodaGunClick>().type);
         }
     }
 
@@ -80,6 +84,7 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
             Destroy(order.selectable);
             order.ItemSelected = false;
+            order.addIngredient("lime");
 
         }
         else if (order.ItemSelected && order.selectable.tag == "lemon" && eventData.button == PointerEventData.InputButton.Left)
@@ -91,6 +96,7 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             }
             Destroy(order.selectable);
             order.ItemSelected = false;
+            order.addIngredient("lemon");
         }
         else if (order.ItemSelected && order.selectable.tag == "ice" && eventData.button == PointerEventData.InputButton.Left)
         {
@@ -101,6 +107,7 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             }
             Destroy(order.selectable);
             order.ItemSelected = false;
+            order.addIngredient("ice");
         }
 
     }

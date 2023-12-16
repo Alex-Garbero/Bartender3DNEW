@@ -6,17 +6,24 @@ public class CurrentOrder : MonoBehaviour
 {
     public GameObject selectable;  //
     public bool ItemSelected = false;
-    private string order = "";
+    private List<string> order = new List<string>();
     public GameObject glassOrder;
     // Start is called before the first frame update
     public void printOrder()
     {
-        print(order);
-        order = "";
+        foreach (var month in order)
+        {
+            print(month);
+        }
+        resetOrder();
     }
     public void addIngredient(string addon)
     {
-        order = order +" "+ addon;
+        order.Add(addon);
+    }
+    public void resetOrder()
+    {
+        order = new List<string>();
     }
     void Update()
     {
@@ -28,18 +35,18 @@ public class CurrentOrder : MonoBehaviour
             if (selectable.tag == "sodagun")
             {
                 selectable.GetComponent<SodaGunMove>().enabled = false;
-                //selectable.transform.position = selectable.GetComponent<SodaGunMove>().enabled =;
-                selectable.transform.rotation = Quaternion.Euler(90, 90, 0);
+                selectable.transform.rotation = selectable.GetComponent<SodaGunClick>().originalRotation;
+                selectable.transform.position = selectable.GetComponent<SodaGunClick>().originalPosition;
             }
             else if (selectable.tag == "drink")
             {
                 selectable.GetComponent<DrinkMove>().enabled = false;
-                //selectable.transform.position = selectable.GetComponent<SodaGunMovement>().originalPosition;
+                selectable.transform.position = selectable.GetComponent<DrinkClick>().originalPosition;
             }
             else if (selectable.tag == "glass"&&selectable.GetInstanceID() == glassOrder.GetInstanceID())
             {
                 Destroy(selectable);
-                //delete order
+                resetOrder();
 
             }
 

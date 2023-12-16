@@ -8,6 +8,7 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 {
     private CurrentOrder order;
     private GameObject parent;
+    public string sodatype;
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             }
 
             parent.GetComponent<SodaGunMove>().enabled = true;
-            parent.GetComponent<SodaGunClick>().type = gameObject.tag;
+            parent.GetComponent<SodaGunClick>().type = sodatype;
         }
     }
 

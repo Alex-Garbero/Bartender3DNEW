@@ -8,14 +8,14 @@ public class SodaGunClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     private CurrentOrder order;     //script that handles orders
     public Vector3 originalPosition;    //original transform.position
-    public Vector3 originalRotation;    //original transform.rotation
+    public Quaternion originalRotation;    //original transform.rotation
     public string type ="";
 
     private void Awake()
     {
         //get orginal transformation
         originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        originalRotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        originalRotation = transform.rotation;
         //gets movement script
         //gets order script
         GameObject OrderController = GameObject.Find("OrderController");
