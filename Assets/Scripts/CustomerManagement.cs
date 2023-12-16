@@ -10,6 +10,7 @@ public class CustomerManagement : MonoBehaviour
     public GameObject customerPrefab;
     public Transform barDoorTransform;
     private GameObject newCustomer;
+    public List<string> playerOrder = new List<string>();
     private bool isSpawning = false;
     private static TextMeshPro customerOrderText;
     
@@ -35,11 +36,18 @@ public class CustomerManagement : MonoBehaviour
         {
             return new List<string>
             {
-                "Cape Cod, Rocks, Ice, 1.5oz Vodka, Cranberry Juice, Lime",
-                "Screwdriver, Rocks, Ice, 1.5oz Vodka, Orange Juice, Lime"
+                "Cape Cod, Rocks, Ice, Vodka, Cranberry, Lime",
+                "Screwdriver, Rocks, Ice, Vodka, Orange, Lime"
             };
         }
         
+    }
+
+    // Gets the player drink for comparison
+    private void Awake()
+    {
+        GameObject OrderController = GameObject.Find("OrderController");
+        playerOrder = OrderController.GetComponent<CurrentOrder>().order;
     }
 
     // Sets the customer drink in DrinkComponent.cs
@@ -239,12 +247,14 @@ public class CustomerManagement : MonoBehaviour
 
         // Simulate the player providing the correct ingredients
         Debug.Log("Player provided matching ingredients. Drink served!");
+        
 
         List<string> drinks = DrinkList.GetDrinks();
         int randomIndex = Random.Range(0, drinks.Count);
         string playerSelectedDrink = drinks[randomIndex];
 
         string selectedDrinkIngredientsString = playerSelectedDrink.Substring(playerSelectedDrink.IndexOf(',') + 1);
+        
 
         // Split the ingredients string into a list
        playerDrinkIngredients = new List<string>(selectedDrinkIngredientsString.Split(','));

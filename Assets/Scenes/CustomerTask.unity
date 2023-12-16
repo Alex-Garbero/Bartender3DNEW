@@ -3871,6 +3871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer
       objectReference: {fileID: 0}
+    - target: {fileID: 4200531961617732371, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4200531961617732381, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3881,11 +3885,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4200531961617732381, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 4200531961617732381, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 12.63
       objectReference: {fileID: 0}
     - target: {fileID: 4200531961617732381, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3927,6 +3931,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4200531961617732382, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
+      propertyPath: customerPrefab
+      value: 
+      objectReference: {fileID: 4200531961617732369, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
     - target: {fileID: 4200531961617732382, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: barDoorTransform
       value: 

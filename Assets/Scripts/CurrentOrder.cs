@@ -6,7 +6,7 @@ public class CurrentOrder : MonoBehaviour
 {
     public GameObject selectable;  //
     public bool ItemSelected = false;
-    private List<string> order = new List<string>();
+    public List<string> order = new List<string>();
     public GameObject glassOrder;
     // Start is called before the first frame update
     public void printOrder()
