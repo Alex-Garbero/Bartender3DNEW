@@ -364,7 +364,7 @@ public class CustomerManagement : MonoBehaviour
             ProvideIngredientsToCustomer(customerGlobal, new List<string>());
             StartCoroutine(DestroyCustomerAfterDelay(customerGlobal, 3f));
             checkDelay = 25f + Time.time;
-            playerOrder = new List<string>();
+            playerOrder.resetOrder();
         }
     }
 }
