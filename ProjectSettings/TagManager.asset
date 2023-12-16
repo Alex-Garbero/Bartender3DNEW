@@ -14,6 +14,9 @@ TagManager:
   - alcohol
   - Customer
   - lemon
+  - Win
+  - Loss
+  - GameOver
   layers:
   - Default
   - TransparentFX

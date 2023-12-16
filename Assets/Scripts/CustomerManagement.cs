@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,10 @@ public class CustomerManagement : MonoBehaviour
     private bool isSpawning = false;
     private static TextMeshPro customerOrderText;
     public string drinkToSpeech;
-    
-    
+    public int correctOrders;
+    public int incorrectOrders;
+
+
     // Bar Settings
     [Header("Bar Settings")]
     public Transform barStoolTransform;
@@ -37,11 +40,11 @@ public class CustomerManagement : MonoBehaviour
         {
             return new List<string>
             {
-                "Cape Cod, Rocks, Ice, Vodka, Cranberry, Lime",
-                "Screwdriver, Rocks, Ice, Vodka, Orange, Lime"
+                "Cape Cod, rocks, ice, vodka, cranberry, lime",
+                "Screwdriver, rocks, ice, vodka, orange, lime"
             };
         }
-        
+
     }
 
     // Gets the player drink for comparison
@@ -56,13 +59,13 @@ public class CustomerManagement : MonoBehaviour
     {
         DrinkComponent drinkComponent = customer.AddComponent<DrinkComponent>();
         drinkComponent.SetDrink(drink);
-        
+
     }
 
     // Sets the customer ingredients in DrinkComponent.cs
     private void SetCustomerDrinkIngredients(GameObject customer, List<string> ingredients)
     {
-        DrinkComponent drinkComponent = customer.AddComponent <DrinkComponent>();
+        DrinkComponent drinkComponent = customer.AddComponent<DrinkComponent>();
         drinkComponent.SetIngredients(ingredients);
     }
 
@@ -94,7 +97,7 @@ public class CustomerManagement : MonoBehaviour
         }
     }
     // Ends spawning
-    
+
     //Checks if customer is at the bar and prevents spawning if so
     bool IsCustomerCollidingWithBarStool()
     {
@@ -108,64 +111,64 @@ public class CustomerManagement : MonoBehaviour
             if (barStoolCollider.bounds.Contains(customer.transform.position))
             {
                 Debug.Log("HIT TRUE");
-                
                 return true; // A customer is colliding with the bar stool
-                
+
             }
         }
         Debug.Log("Hit False");
         return false; // No customer is colliding with the bar stool
-        
+
     }
 
     // Spawning routine to create customers that have a drink and their corresponding ingredient
     IEnumerator SpawnCustomerRoutine()
     {
         isSpawning = true;
-        Debug.Log("Generating new customer");
+        Debug.Log("SpawnCustomerRoutine");
         newCustomer = Instantiate(customerPrefab, barDoorTransform.position, Quaternion.identity);
 
         List<string> drinks = DrinkList.GetDrinks();
-        int randomIndex = Random.Range(0, drinks.Count);
+        int randomIndex = UnityEngine.Random.Range(0, drinks.Count);
         string selectedDrink = drinks[randomIndex];
-       string selectedDrinkName = selectedDrink.Substring(0, selectedDrink.IndexOf(','));
+        string selectedDrinkName = selectedDrink.Substring(0, selectedDrink.IndexOf(','));
         drinkToSpeech = selectedDrinkName;
-        Debug.Log("SpawnCustomerRoutine "+ selectedDrink);
-        
+        Debug.Log("SpawnCustomerRoutine selected drink: " + selectedDrink);
+
         SetCustomerDrink(newCustomer, selectedDrink);
         List<string> ingredients = GetIngredientsForDrink(selectedDrinkName);
 
         if (selectedDrink.Contains(selectedDrinkName))
         {
-            Debug.Log(selectedDrink + " if " + selectedDrinkName);
+            Debug.Log("SELECTED DRINK: " + selectedDrink + " IF " + selectedDrinkName);
             selectedDrinkName = "Cape Cod";
-            
+
 
         }
         else
         {
-            Debug.Log(selectedDrink + " else " + selectedDrinkName);
+            Debug.Log("SELECTED DRINK: " + selectedDrink + " FOR " + selectedDrinkName);
             selectedDrinkName = "Screwdriver";
-            
+
 
         }
 
         yield return StartCoroutine(MoveTowardsBar(newCustomer.transform));
+
         isSpawning = false;
     }
 
     // Takes the selected random drink and only extracts the ingredients
     List<string> GetIngredientsForDrink(string selectedDrinkName)
     {
-       
-        Debug.Log("Before if else " + selectedDrinkName);
+
+        Debug.Log("GetIngredientsForDrink");
         List<string> ingredients = new List<string>();
         List<string> drinks = DrinkList.GetDrinks();
-        
 
-       
-     
-        Debug.Log("in ingredients contains " + selectedDrinkName);
+
+
+
+        Debug.Log("Starting to get ingredients for " + selectedDrinkName);
 
         foreach (string drink in drinks)
         {
@@ -190,6 +193,7 @@ public class CustomerManagement : MonoBehaviour
                     // Print the ingredients using Debug.Log
                     Debug.Log($"Ingredients for {selectedDrinkName}: {string.Join(", ", ingredients)}");
 
+
                     // Set the ingredients for the customer
                     SetCustomerDrinkIngredients(newCustomer, ingredients);
 
@@ -201,7 +205,7 @@ public class CustomerManagement : MonoBehaviour
         // If the selected drink is not found, return an empty list
         return ingredients;
     }
-    
+
     //Moves the customer to the bar 
     IEnumerator MoveTowardsBar(Transform customerTransform)
     {
@@ -216,13 +220,13 @@ public class CustomerManagement : MonoBehaviour
             if (barStoolCollider.bounds.Contains(customerTransform.position))
             {
                 HandleCollisionWithBarStool(customerTransform.gameObject);
-               
+
                 yield break; // Exit the coroutine when a collision occurs
-                
+
             }
 
             yield return null;
-            
+
         }
     }
     // Generates a Drink Componenet once the customer has collided with the bar
@@ -232,7 +236,7 @@ public class CustomerManagement : MonoBehaviour
 
         if (drinkComponent != null)
         {
-            
+
             string drink = drinkComponent.GetDrink();
             List<string> ingredients = drinkComponent.GetIngredients();
             ProvideIngredientsToCustomer(customer, DrinkList.GetDrinks());
@@ -242,51 +246,60 @@ public class CustomerManagement : MonoBehaviour
     // This is where the player code can replace what I have here, which is an automatic check for ingredients
     void ProvideIngredientsToCustomer(GameObject customer, List<string> playerDrinkIngredients)
     {
-        int points = 0;
+        int correctPoints = 0;
+        int incorrectPoints = 0;
         DrinkComponent drinkComponent = customer.GetComponent<DrinkComponent>();
         List<string> plist = new List<string>();
         List<string> clist = new List<string>();
 
-        // Simulate the player providing the correct ingredients
-        Debug.Log("Player provided matching ingredients. Drink served!");
-        
-
+        /*
         List<string> drinks = DrinkList.GetDrinks();
         int randomIndex = Random.Range(0, drinks.Count);
         string playerSelectedDrink = drinks[randomIndex];
-
         string selectedDrinkIngredientsString = playerSelectedDrink.Substring(playerSelectedDrink.IndexOf(',') + 1);
-        
+        */
 
         // Split the ingredients string into a list
-       playerDrinkIngredients = new List<string>(selectedDrinkIngredientsString.Split(','));
-        // Get customer's drink ingredients
-        List<string> customerDrinkIngredients = GetIngredientsForDrink(playerSelectedDrink);
-        Debug.Log(playerDrinkIngredients);
-        Debug.Log (customerDrinkIngredients);
+        // playerDrinkIngredients = playerOrder;
+
+
+        // Get customer's and player's drink ingredients
+        Debug.Log("ProvideIngredientsToCustomer");
+        List<string> customerDrinkIngredients = GetIngredientsForDrink(drinkToSpeech);
+        playerDrinkIngredients = customerDrinkIngredients;
+        Debug.Log("Player assembled these ingredients " + playerDrinkIngredients);
+        Debug.Log(customerDrinkIngredients);
 
         foreach (string ingredient in playerDrinkIngredients)
         {
             plist.Add(ingredient.Trim());
-            Debug.Log("Ingredient: " + ingredient);
+            Debug.Log("Ingredient player: " + ingredient);
         }
-        Debug.Log("Ingredients: " + string.Join(", ", playerDrinkIngredients));
+        Debug.Log("Player Ingredients: " + string.Join(", ", playerDrinkIngredients));
         foreach (string ingredient in customerDrinkIngredients)
         {
             clist.Add(ingredient.Trim());
-            Debug.Log("Ingredient: " + ingredient);
+            Debug.Log("Ingredient customer: " + ingredient);
         }
-        Debug.Log("Ingredients: " + string.Join(", ", customerDrinkIngredients));
+        Debug.Log("Customer Ingredients: " + string.Join(", ", customerDrinkIngredients));
         // Handle successful drink serving (e.g., destroy the customer, increase score, etc.)
         if (AreIngredientListsEqual(plist, clist))
         {
-
+            Debug.Log("Ingredients match. Customer says thank you.");
             StartCoroutine(DestroyCustomerAfterDelay(customer, 3f));
-            points++;
+            correctPoints++;
+            Debug.Log("Correct: " + correctPoints);
+            correctOrders = correctOrders + correctPoints;
+            Debug.Log("Correct Orders: " + correctOrders);
         }
         else
         {
-            points--;
+            Debug.Log("Ingredients do not match. Player must continue.");
+            StartCoroutine(DestroyCustomerAfterDelay(customer, 3f));
+            incorrectPoints++;
+            Debug.Log("Incorrect: " + incorrectPoints);
+            incorrectOrders = incorrectOrders + incorrectPoints;
+            Debug.Log("Incorrect Orders: " + incorrectOrders);
         }
     }
 
@@ -298,6 +311,7 @@ public class CustomerManagement : MonoBehaviour
         // Destroy the customer after the specified delay
         Destroy(customer);
     }
+    /*
     // Checks if the player and customer have matching ingredients
     bool AreIngredientListsEqual(List<string> list1, List<string> list2)
     {
@@ -313,6 +327,34 @@ public class CustomerManagement : MonoBehaviour
         
         return true;
     }
+    */
+
+    bool AreIngredientListsEqual(List<string> list1, List<string> list2)
+    {
+        // Compare two sets of ingredients in a case-sensitive manner
+        HashSet<string> set1 = new HashSet<string>(list1);
+        HashSet<string> set2 = new HashSet<string>(list2);
+        Debug.Log("AreIngredientsListEqual: " + set1.SetEquals(set2));
+        // return set1.SetEquals(set2);
+        int count = 0;
+        
+        if (set1.SetEquals(set2) && count == 0)
+        {
+            Debug.Log(count);
+            count = 0;
+            return true;
+
+        }
+        else
+        {
+            Debug.Log(count);
+            count = 1;
+            return false;
+
+        }
+       
+    }
+    
 
 
     // Update is called once per frame
