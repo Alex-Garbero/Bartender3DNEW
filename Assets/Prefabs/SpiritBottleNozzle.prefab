@@ -126,3 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalPosition: {x: 0, y: 0, z: 0}
+  drinktype: 
+  color: {fileID: 2100000, guid: 5abf9be72e0227d40a504fef987c4af9, type: 2}
