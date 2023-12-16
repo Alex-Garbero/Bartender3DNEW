@@ -33,6 +33,7 @@ public class CurrentOrder : MonoBehaviour
     }
     public void resetOrder()
     {
+        Destroy(glassOrder);
         order = new List<string>();
     }
     void Update()
@@ -61,7 +62,7 @@ public class CurrentOrder : MonoBehaviour
             }
             else if ((selectable.tag == "collins" || selectable.tag == "rocks") && selectable.GetInstanceID() == glassOrder.GetInstanceID())
             {
-                Destroy(selectable);
+                Destroy(glassOrder);
                 resetOrder();
                 ItemSelected = false;
             }

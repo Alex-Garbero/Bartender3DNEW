@@ -19,7 +19,7 @@ public class CustomerManagement : MonoBehaviour
     public int incorrectOrders;
     GameObject customerGlobal;
     public float checkDelay = 25f;
-
+    public GameObject OrderController;
     // Bar Settings
     [Header("Bar Settings")]
     public Transform barStoolTransform;
@@ -39,10 +39,25 @@ public class CustomerManagement : MonoBehaviour
     {
         public static List<string> GetDrinks()
         {
+            /*
             return new List<string>
             {
                 "Cape Cod, rocks, ice, vodka, cranberry, lime",
                 "Screwdriver, rocks, ice, vodka, orange, lime"
+                
+            };
+            */
+            return new List<string>
+            {
+                "Cape Cod, rocks, ice, vodka, cranberry, lime",
+                "Screwdriver, rocks, ice, vodka, orange, lime",
+                "Cuba Libre, rocks, ice, rum, coke, lime",
+                "Vodka Soda, rocks, ice, vodka, soda water, lime",
+                "Tequila Soda, rocks, ice, tequila, soda water, lime",
+                "Whiskey Code, rocks, ice, whiskey, coke",
+                "Bay Breeze, rocks, ice, vodka, cranberry, pineapple, lime",
+                "Madras, rocks, ice, vodka, cranberry, orange, lime"
+
             };
         }
 
@@ -51,7 +66,7 @@ public class CustomerManagement : MonoBehaviour
     // Gets the player drink for comparison
     private void Awake()
     {
-        GameObject OrderController = GameObject.Find("OrderController");
+        OrderController = GameObject.Find("OrderController");
         playerOrder = OrderController.GetComponent<CurrentOrder>().order;
     }
 
@@ -138,6 +153,7 @@ public class CustomerManagement : MonoBehaviour
         SetCustomerDrink(newCustomer, selectedDrink);
         List<string> ingredients = GetIngredientsForDrink(selectedDrinkName);
 
+        /*
         if (selectedDrink.Contains(selectedDrinkName))
         {
             Debug.Log("SELECTED DRINK: " + selectedDrink + " IF " + selectedDrinkName);
@@ -145,14 +161,14 @@ public class CustomerManagement : MonoBehaviour
 
 
         }
-        else
+        else 
         {
             Debug.Log("SELECTED DRINK: " + selectedDrink + " FOR " + selectedDrinkName);
             selectedDrinkName = "Screwdriver";
 
 
         }
-
+        */
         yield return StartCoroutine(MoveTowardsBar(newCustomer.transform));
 
         isSpawning = false;
@@ -349,6 +365,7 @@ public class CustomerManagement : MonoBehaviour
             ProvideIngredientsToCustomer(customerGlobal, new List<string>());
             StartCoroutine(DestroyCustomerAfterDelay(customerGlobal, 3f));
             checkDelay = 25f + Time.time;
+            OrderController.GetComponent<CurrentOrder>().resetOrder();
         }
     }
 }
