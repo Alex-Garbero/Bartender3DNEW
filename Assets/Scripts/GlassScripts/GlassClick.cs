@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private CurrentOrder order;
+    public string glass;
 
     public void Start()
     {
@@ -30,14 +31,24 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             foreach (Transform child in transform)
             {
                 if (child.tag == "alcohol")
+                {
+                    child.gameObject.SetActive(false);
                     child.gameObject.SetActive(true);
+                    child.GetComponent<MeshRenderer>().material = order.selectable.GetComponent<DrinkClick>().color;
+                } 
             }
             order.selectable.GetComponent<DrinkMove>().pour = true;
         }
         else if (order.ItemSelected && order.selectable.tag == "sodagun" && eventData.button == PointerEventData.InputButton.Left)
         {
+            foreach (Transform child in transform)
             {
-
+                if (child.tag == "alcohol")
+                {
+                    child.gameObject.SetActive(false);
+                    child.gameObject.SetActive(true);
+                    child.GetComponent<MeshRenderer>().material = order.selectable.GetComponent<SodaGunClick>().color;
+                }
             }
         }
     }
@@ -103,7 +114,10 @@ public class GlassClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             foreach (Transform child in transform)
             {
                 if (child.tag == "ice")
+                {
+                    child.gameObject.SetActive(false);
                     child.gameObject.SetActive(true);
+                }
             }
 
             Destroy(order.selectable);

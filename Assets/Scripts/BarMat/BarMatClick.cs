@@ -44,7 +44,7 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             order.ItemSelected = false;
         }
-        else if(order.ItemSelected && order.selectable.tag == "glass" && eventData.button == PointerEventData.InputButton.Left)
+        else if(order.ItemSelected && (order.selectable.tag == "collins" || order.selectable.tag == "rocks") && eventData.button == PointerEventData.InputButton.Left)
         {
             //failure point potentially in the future
             if (curGlass&&order.selectable.GetInstanceID() != glassOrder.GetInstanceID())
@@ -70,7 +70,7 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             glassOrder = order.selectable;
             curGlass = true;
             order.glassOrder = glassOrder;
-            order.addIngredient("glass");
+            order.addIngredient(order.selectable.tag);
         }
     }
 

@@ -19,7 +19,17 @@ public class CurrentOrder : MonoBehaviour
     }
     public void addIngredient(string addon)
     {
-        order.Add(addon);
+        bool dupe = false;
+        foreach(string cur in order)
+        {
+            if(cur == addon)
+            {
+                dupe = true;
+            }
+        }
+        if(!dupe)
+            order.Add(addon);
+        dupe = false;
     }
     public void resetOrder()
     {
@@ -37,17 +47,23 @@ public class CurrentOrder : MonoBehaviour
                 selectable.GetComponent<SodaGunMove>().enabled = false;
                 selectable.transform.rotation = selectable.GetComponent<SodaGunClick>().originalRotation;
                 selectable.transform.position = selectable.GetComponent<SodaGunClick>().originalPosition;
+                ItemSelected = false;
+                foreach (Transform child in selectable.transform)
+                {
+                    child.gameObject.layer = 0;
+                }
             }
             else if (selectable.tag == "drink")
             {
                 selectable.GetComponent<DrinkMove>().enabled = false;
                 selectable.transform.position = selectable.GetComponent<DrinkClick>().originalPosition;
+                ItemSelected = false;
             }
-            else if (selectable.tag == "glass"&&selectable.GetInstanceID() == glassOrder.GetInstanceID())
+            else if ((selectable.tag == "collins" || selectable.tag == "rocks") && selectable.GetInstanceID() == glassOrder.GetInstanceID())
             {
                 Destroy(selectable);
                 resetOrder();
-
+                ItemSelected = false;
             }
 
             else

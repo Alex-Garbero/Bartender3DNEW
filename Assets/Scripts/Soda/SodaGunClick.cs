@@ -10,6 +10,7 @@ public class SodaGunClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public Vector3 originalPosition;    //original transform.position
     public Quaternion originalRotation;    //original transform.rotation
     public string type ="";
+    public Material color;
 
     private void Awake()
     {

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351d55c96325d684d9a77bd8f78cd43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lime: {fileID: 0}
+  Lime: {fileID: 8305766667432825213, guid: cc22073c326844d40bcb188280dcd2c8, type: 3}
 --- !u!1 &5187650861458199637
 GameObject:
   m_ObjectHideFlags: 0

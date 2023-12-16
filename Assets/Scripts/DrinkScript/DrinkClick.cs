@@ -10,6 +10,7 @@ public class DrinkClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private DrinkMove move;
     public Vector3 originalPosition;
     public string drinktype;
+    public Material color;
 
     private void Awake()
     {

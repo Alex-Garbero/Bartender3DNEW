@@ -9,6 +9,7 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private CurrentOrder order;
     private GameObject parent;
     public string sodatype;
+    public Material color;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         GameObject OrderController = GameObject.Find("OrderController");
         order = OrderController.GetComponent<CurrentOrder>();
         parent = transform.parent.gameObject;
+        parent.GetComponent<SodaGunClick>().color = color; 
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -40,6 +42,8 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             foreach (Transform child in parent.transform)
             {
                 child.gameObject.layer = 2;
+                child.gameObject.GetComponent<SodaGunButtons>().enabled = false;
+
             }
 
             parent.GetComponent<SodaGunMove>().enabled = true;
