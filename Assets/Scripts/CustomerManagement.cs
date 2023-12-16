@@ -54,7 +54,7 @@ public class CustomerManagement : MonoBehaviour
                 "Cuba Libre, rocks, ice, rum, coke, lime",
                 "Vodka Soda, rocks, ice, vodka, soda water, lime",
                 "Tequila Soda, rocks, ice, tequila, soda water, lime",
-                "Whiskey Code, rocks, ice, whiskey, coke",
+                "Whiskey coke, rocks, ice, whiskey, coke, lime",
                 "Bay Breeze, rocks, ice, vodka, cranberry, pineapple, lime",
                 "Madras, rocks, ice, vodka, cranberry, orange, lime"
 
