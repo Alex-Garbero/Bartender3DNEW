@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Score : MonoBehaviour
     public int incorrectScore;
     public TextMeshProUGUI cScoreUI;
     public TextMeshProUGUI iScoreUI;
+    
 
     private bool gameEnded = false; // Flag to track if the game has already ended
 
@@ -30,10 +32,12 @@ public class Score : MonoBehaviour
         // Check for win or loss conditions
         if (correctScore == 3)
         {
+            SceneManager.LoadSceneAsync(2);
             gameEnded = true; // Set the flag to true to indicate that the game has ended
         }
         else if (incorrectScore == 5)
         {
+            SceneManager.LoadSceneAsync(3);
             gameEnded = true; // Set the flag to true to indicate that the game has ended
         }
     }

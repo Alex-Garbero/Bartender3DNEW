@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/BarScene.unity
     guid: ffa356b4379ff5d4fa6fd3f6558c6f11
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Success.unity
+    guid: c90884627986a42f7ac212a4a57ea939
+  - enabled: 1
+    path: Assets/Scenes/Fail.unity
+    guid: ebc2f42511ba24d0aacbb2459cd6c06c
   m_configObjects: {}
