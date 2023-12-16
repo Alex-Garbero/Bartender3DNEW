@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23194307, g: 0.16647398, b: 0.16680726, a: 1}
+  m_IndirectSpecularColor: {r: 0.23196064, g: 0.16630282, b: 0.16678241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5462,6 +5462,10 @@ PrefabInstance:
       propertyPath: customerPrefab
       value: 
       objectReference: {fileID: 4200531961617732369, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
+    - target: {fileID: 4200531961617732382, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
+      propertyPath: OrderController
+      value: 
+      objectReference: {fileID: 1623627209}
     - target: {fileID: 4200531961617732382, guid: 2ef3e26b2074ba4499e617ccf065f47f, type: 3}
       propertyPath: barDoorTransform
       value: 

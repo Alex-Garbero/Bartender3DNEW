@@ -10,6 +10,13 @@ public class CurrentOrder : MonoBehaviour
     public GameObject glassOrder;
     public bool water = false;
     // Start is called before the first frame update
+    
+    public void Awake()
+    {
+        Destroy(glassOrder);
+        order = new List<string>();
+    }
+    
     public void printOrder()
     {
         foreach (var month in order)
