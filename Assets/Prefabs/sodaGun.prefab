@@ -111,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &2335788228576479019
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &3109074448553620083
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 541940b8efb898f46ab70dc61c53117e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: orange
+  color: {fileID: 2100000, guid: 541940b8efb898f46ab70dc61c53117e, type: 2}
 --- !u!1 &3749312357961306880
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &4434167017082360659
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &5725309180371961525
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +593,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5725309180371961525}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
@@ -676,8 +686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalPosition: {x: 0, y: 0, z: 0}
-  originalRotation: {x: 0, y: 0, z: 0}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
   type: 
+  color: {fileID: 0}
 --- !u!114 &2881698925405885660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,7 +696,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5725309180371961525}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 391bb63b2322b7a4c9a1e0f68bfe6fce, type: 3}
   m_Name: 
@@ -801,6 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &7019302271410695575
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: 
+  color: {fileID: 0}
 --- !u!1 &8455902471232983588
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +990,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4e81eddfd967af148a861d46d5647fa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1023,3 +1038,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c813fbfd47c2447bbd8465e492cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodatype: cranberry
+  color: {fileID: 2100000, guid: 4e81eddfd967af148a861d46d5647fa7, type: 2}

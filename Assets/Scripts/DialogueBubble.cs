@@ -8,13 +8,19 @@ public class DialogueBubble : MonoBehaviour
 {
     public TextMeshProUGUI orderText; // Make sure this matches the text component you're using
     public DrinkOrderManager drinkOrderManager; // Reference to the DrinkOrderManager script
-
+    CustomerManagement customer;
     private void Awake()
     {
         // Make sure the dialogue bubble is not active when the game starts
         gameObject.SetActive(true);
+        GameObject customerOBJ = GameObject.Find("Customer");
+        customer = customerOBJ.GetComponent<CustomerManagement>();
     }
 
+    private void Update()
+    {
+        ShowOrder("I would like a "+customer.drinkToSpeech);
+    }
     // This method is public so it can be called by the button's OnClick event
     public void ShowRandomOrder()
     {
