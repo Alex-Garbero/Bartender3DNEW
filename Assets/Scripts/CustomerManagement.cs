@@ -13,6 +13,7 @@ public class CustomerManagement : MonoBehaviour
     public List<string> playerOrder = new List<string>();
     private bool isSpawning = false;
     private static TextMeshPro customerOrderText;
+    public string drinkToSpeech;
     
     
     // Bar Settings
@@ -128,6 +129,7 @@ public class CustomerManagement : MonoBehaviour
         int randomIndex = Random.Range(0, drinks.Count);
         string selectedDrink = drinks[randomIndex];
        string selectedDrinkName = selectedDrink.Substring(0, selectedDrink.IndexOf(','));
+        drinkToSpeech = selectedDrinkName;
         Debug.Log("SpawnCustomerRoutine "+ selectedDrink);
         
         SetCustomerDrink(newCustomer, selectedDrink);
