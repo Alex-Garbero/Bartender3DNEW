@@ -20,8 +20,6 @@ public class Score : MonoBehaviour
     void Update()
     {
         // If the game has already ended, don't continue checking
-        if (gameEnded)
-            return;
 
         correctScore = script.correctOrders;
         incorrectScore = script.incorrectOrders;
@@ -30,15 +28,13 @@ public class Score : MonoBehaviour
         iScoreUI.text = "Incorrect Drinks: " + incorrectScore.ToString();
 
         // Check for win or loss conditions
-        if (correctScore == 3)
+        if (correctScore >= 5)
         {
-            SceneManager.LoadSceneAsync(2);
-            gameEnded = true; // Set the flag to true to indicate that the game has ended
+            SceneManager.LoadSceneAsync(2); // Set the flag to true to indicate that the game has ended
         }
-        else if (incorrectScore == 5)
+        else if (incorrectScore >= 3)
         {
-            SceneManager.LoadSceneAsync(3);
-            gameEnded = true; // Set the flag to true to indicate that the game has ended
+            SceneManager.LoadSceneAsync(3); // Set the flag to true to indicate that the game has ended
         }
     }
 }
