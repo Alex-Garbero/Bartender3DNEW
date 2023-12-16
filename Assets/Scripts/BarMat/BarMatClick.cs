@@ -51,7 +51,7 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 Destroy(glassOrder);
                 curGlass = false;
-                //delete order
+                order.resetOrder();
             }
             glassOrder = order.selectable;
             glassOrder.GetComponent<GlassMove>().enabled = false;
@@ -70,6 +70,7 @@ public class BarMatClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             glassOrder = order.selectable;
             curGlass = true;
             order.glassOrder = glassOrder;
+            order.addIngredient("glass");
         }
     }
 
