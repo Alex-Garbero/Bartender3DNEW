@@ -46,7 +46,7 @@ public class SodaGunButtons : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             foreach (Transform child in parent.transform)
             {
                 child.gameObject.layer = 2;
-                child.gameObject.GetComponent<SodaGunButtons>().enabled = false;
+                //child.gameObject.GetComponent<SodaGunButtons>().enabled = false;
 
             }
 
