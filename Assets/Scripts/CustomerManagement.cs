@@ -66,8 +66,7 @@ public class CustomerManagement : MonoBehaviour
     // Gets the player drink for comparison
     private void Awake()
     {
-        OrderController = GameObject.Find("OrderController");
-        playerOrder = OrderController.GetComponent<CurrentOrder>().order;
+        
     }
 
     // Sets the customer drink in DrinkComponent.cs
@@ -283,9 +282,9 @@ public class CustomerManagement : MonoBehaviour
         // Get customer's and player's drink ingredients
         Debug.Log("ProvideIngredientsToCustomer");
         List<string> customerDrinkIngredients = GetIngredientsForDrink(drinkToSpeech);
-        playerDrinkIngredients = playerOrder;
         Debug.Log("Player assembled these ingredients " + playerDrinkIngredients);
         Debug.Log(customerDrinkIngredients);
+        playerDrinkIngredients = OrderController.GetComponent<CurrentOrder>().order;
 
         foreach (string ingredient in playerDrinkIngredients)
         {
@@ -362,9 +361,11 @@ public class CustomerManagement : MonoBehaviour
     {
         if (customerGlobal != null && Time.time > checkDelay)
         {
-            ProvideIngredientsToCustomer(customerGlobal, new List<string>());
+            ProvideIngredientsToCustomer(customerGlobal, playerOrder);
             StartCoroutine(DestroyCustomerAfterDelay(customerGlobal, 3f));
             checkDelay = 25f + Time.time;
+            OrderController.SetActive(false);
+            OrderController.SetActive(true);
             OrderController.GetComponent<CurrentOrder>().resetOrder();
         }
     }
